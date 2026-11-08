@@ -291,6 +291,7 @@ jobs:
           URL=$(curl -sf -X POST -d '' https://hamumu.itch.io/dr-lunatic-supreme-with-cheese/file/700882 | jq -r .url)
           curl -sfL -o supreme8_install.exe "$URL"
           7z x -y -osup supreme8_install.exe > /dev/null
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           pip install pillow
           python3 tools/build_assets.py "$(dirname $(find sup -iname gamepal.bmp | head -1))" src/main/resources
       - uses: actions/setup-java@v4
